@@ -16,9 +16,7 @@ typedef struct	s_flags
 	int			width;
 	int			prcsn;
 
-	const char	*prev_format;
-	
-	unsigned	hash:1;
+	unsigned	hash:2;
 	unsigned	minus:1;
 	unsigned	plus:1;
 	unsigned	zero:1;
@@ -33,13 +31,16 @@ typedef struct	s_flags
 	unsigned	z:1;
 }				t_flags;
 
-t_flags	f;
-
 int		ft_printf(const char *format, ...);
-void	clr_flags();
+void	clr_flags(t_flags *f);
 int		equals_spec(const char c);
-void	read_format_1();
-void	read_format_2();
+void	read_format_1(t_flags *f);
+void	read_format_2(t_flags *f);
+
+/*
+** Print C
+*/
+
 
 
 #endif

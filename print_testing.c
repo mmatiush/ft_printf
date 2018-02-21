@@ -2,8 +2,8 @@
 
 int		main(void)
 {
-	printf("%'d\n", 10);
-	printf("%5-d\n", 10);
-	printf("%14.3ys%d\n", "Hello");
+	printf("%20.1d\n", 12, "blahblah" );
+	printf("%c\n", 'B');
+	//printf("%14.3ys%d\n", "Hello");
 	return (0);
 }
