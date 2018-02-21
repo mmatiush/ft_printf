@@ -5,7 +5,7 @@ void	start_printing(t_flags *f)
 	if (*f->fmt == 'd')
 		ft_putnbr(va_arg(f->ap, int));
 	if (*f->fmt == 'c')
-		print_char(&f);
+		print_char(f);
 	if (*f->fmt == 's')
 		ft_putstr(va_arg(f->ap, char*));
 }
@@ -24,29 +24,30 @@ int		equals_spec(const char c)
 }
 void	read_format_2(t_flags *f)
 {
-		f->j = (*f->fmt == 'j') ? 1 : 0;
-		f->z = (*f->fmt == 'z') ? 1 : 0;
+		(*f->fmt == 'j') ? f->j = 1 : 0;
+		(*f->fmt == 'z') ? f->z = 1 : 0;
 		(f->hh) ? f->h = 0 : 0;
 		(f->ll) ? f->l = 0 : 0;
-		f->hash = (*f->fmt == '#') ? 1 : 0;
-		f->minus = (*f->fmt == '-') ? 1 : 0;
-		f->plus = (*f->fmt == '+') ? 1 : 0;
-		f->zero = (*f->fmt == '0') ? 1 : 0;
-		f->space = (*f->fmt == ' ') ? 1 : 0;
-		f->f_prcsn = (*f->fmt == '.') ? 1 : 0;
+		(*f->fmt == '#') ? f->hash = 1 : 0;
+		(*f->fmt == '-') ? f->minus = 1 : 0;
+		(*f->fmt == '+') ? f->plus = 1 : 0;
+		(*f->fmt == '0') ? f->zero = 1 : 0;
+		(*f->fmt == ' ') ? f->space = 1 : 0;
+		(*f->fmt == '.') ? f->f_prcsn = 1 : 0;
 		if (ft_isdigit(*f->fmt) && *f->fmt != '0' && f->f_prcsn)
 		{
 			f->prcsn = ft_atoi(f->fmt);
 			while (ft_isdigit(*f->fmt))
 				f->fmt++;
 		}
-
 		if (ft_isdigit(*f->fmt) && *f->fmt != '0' && !f->f_prcsn)
 		{
 			f->width = ft_atoi(f->fmt);
-			while (ft_isdigit(*f->fmt))
-				f->fmt++;
+			f->fmt = f->fmt + (ft_intlen(f->width) - 1);
 		}
+		f->fmt++;
+		printf("%d\n", f->minus);
+
 }
 
 /*
@@ -71,10 +72,10 @@ void	read_format_1(t_flags *f)
 			f->prcsn = va_arg(f->ap, int);
 		if (*f->fmt == '*' && !f->f_prcsn)
 			f->width = va_arg(f->ap, int);
-		f->h = (*f->fmt == 'h') ? 1 : 0;
-		f->l = (*f->fmt == 'l') ? 1 : 0;
-		f->hh = (*f->fmt == 'h' && *prev_format == 'h') ? 1 : 0;
-		f->ll = (*f->fmt == 'l' && *prev_format == 'l') ? 1 : 0;
+		(*f->fmt == 'h') ? f->h = 1 : 0;
+		(*f->fmt == 'l') ? f->l = 1 : 0;
+		(*f->fmt == 'h' && *prev_format == 'h') ? f->hh = 1 : 0;
+		(*f->fmt == 'l' && *prev_format == 'l') ? f->ll = 1 : 0;
 		read_format_2(f);
 	}
 	if (*f->fmt)

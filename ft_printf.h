@@ -5,6 +5,8 @@
 #include "libft.h"
 #include <stdarg.h>
 
+#define ABS(x) (((x) < 0) ? (-x) : (x));
+
 typedef struct	s_flags
 {
 
@@ -40,6 +42,9 @@ void	read_format_2(t_flags *f);
 /*
 ** Print C
 */
+void	print_char(t_flags *f);
+void	print_padding(int width, int print_len, char symbol, t_flags *f);
+
 
 
 

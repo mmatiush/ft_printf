@@ -1,18 +1,21 @@
 #include "ft_printf.h"
 
-void	print_wchar(t_flags *f)
+/*void	print_wchar(t_flags *f)
 {
 
-}
+}*/
 
 void	print_char(t_flags *f)
 {
-	if (f->l)
+	/*if (f->l)
 	{
 		print_wchar(&f);
 		return ;
-	}
-	(f->) ? print_padding();
+	}*/
+	if (!f->minus)
+		print_padding(f->width, 1, (f->zero ? '0' : ' '), &f);
 	ft_putchar(va_arg(f->ap, int));
-	print_padding();
+	f->num_printed++;
+	if (f->minus)
+		print_padding(f->width, 1, ' ', &f);
 }
