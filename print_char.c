@@ -13,9 +13,9 @@ void	print_char(t_flags *f)
 		return ;
 	}*/
 	if (!f->minus)
-		print_padding(f->width, 1, (f->zero ? '0' : ' '), &f);
+		print_padding(f->width, 1, (f->zero ? '0' : ' '), &*f);
 	ft_putchar(va_arg(f->ap, int));
 	f->num_printed++;
 	if (f->minus)
-		print_padding(f->width, 1, ' ', &f);
+		print_padding(f->width, 1, ' ', &*f);
 }

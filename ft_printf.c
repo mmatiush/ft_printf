@@ -5,7 +5,7 @@ void	start_printing(t_flags *f)
 	if (*f->fmt == 'd')
 		ft_putnbr(va_arg(f->ap, int));
 	if (*f->fmt == 'c')
-		print_char(f);
+		print_char(&*f);
 	if (*f->fmt == 's')
 		ft_putstr(va_arg(f->ap, char*));
 }
@@ -46,8 +46,6 @@ void	read_format_2(t_flags *f)
 			f->fmt = f->fmt + (ft_intlen(f->width) - 1);
 		}
 		f->fmt++;
-		printf("%d\n", f->minus);
-
 }
 
 /*

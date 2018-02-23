@@ -18,7 +18,7 @@ typedef struct	s_flags
 	int			width;
 	int			prcsn;
 
-	unsigned	hash:2;
+	unsigned	hash:1;
 	unsigned	minus:1;
 	unsigned	plus:1;
 	unsigned	zero:1;
