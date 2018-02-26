@@ -6,6 +6,8 @@ void	start_printing(t_flags *f)
 		ft_putnbr(va_arg(f->ap, int));
 	if (*f->fmt == 'c')
 		print_char(&*f);
+	if (*f->fmt == 'C')
+		print_wchar(&*f);
 	if (*f->fmt == 's')
 		ft_putstr(va_arg(f->ap, char*));
 }

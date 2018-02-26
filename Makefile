@@ -4,7 +4,8 @@ SRC_DIR :=		./src/
 OBJ_DIR :=		./obj/
 INC_DIR :=		./inc/
 
-SRC =			ft_printf.c main.c clr_flags.c print_char.c print_padding.c
+SRC =			ft_printf.c main.c clr_flags.c print_char.c print_padding.c\
+				print_str.c
 
 OBJ :=			$(addprefix $(OBJ_DIR), $(SRC:.c=.o))
 

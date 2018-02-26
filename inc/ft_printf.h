@@ -40,11 +40,16 @@ void	read_format_1(t_flags *f);
 void	read_format_2(t_flags *f);
 
 /*
-** Print C
+** Print c, C
 */
 void	print_char(t_flags *f);
 void	print_padding(int width, int print_len, char symbol, t_flags *f);
-
+void	print_wchar(t_flags *f);
+int		get_wlen(unsigned int wc);
+void	ft_wctomb(unsigned char (*octet)[4], unsigned wc, int w_len);
+/*
+** Print s, S
+*/
 
 
 
