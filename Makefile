@@ -1,11 +1,10 @@
-NAME :=			a.out
+NAME :=			libftprintf.a
 
 SRC_DIR :=		./src/
 OBJ_DIR :=		./obj/
 INC_DIR :=		./inc/
 
-SRC =			ft_printf.c main.c clr_flags.c print_char.c print_padding.c\
-				print_str.c
+SRC =			ft_printf.c clr_flags.c print_char.c print_padding.c print_str.c
 
 OBJ :=			$(addprefix $(OBJ_DIR), $(SRC:.c=.o))
 
@@ -21,7 +20,11 @@ CC :=			gcc
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJ)
-	$(CC) $(OBJ) $(LIBFT_FLAGS) -o $(NAME)
+	ar rc $(NAME) $(OBJ) $(LIBFT_DIR)*.o
+	ranlib $(NAME)
+
+main: $(NAME)
+	$(CC) $(SRC_DIR)main.c $(NAME) $(LIBFT_FLAGS) $(HEADER_FLAGS) -o a.out
 
 $(OBJ): | $(OBJ_DIR)
 

@@ -2,10 +2,9 @@
  #define FT_PRINTF_H
 
 #include <stdio.h>
+#include <wchar.h>
 #include "libft.h"
 #include <stdarg.h>
-
-#define ABS(x) (((x) < 0) ? (-x) : (x));
 
 typedef struct	s_flags
 {
@@ -45,12 +44,12 @@ void	read_format_2(t_flags *f);
 void	print_char(t_flags *f);
 void	print_padding(int width, int print_len, char symbol, t_flags *f);
 void	print_wchar(t_flags *f);
-int		get_wlen(unsigned int wc);
-void	ft_wctomb(unsigned char (*octet)[4], unsigned wc, int w_len);
+int		get_wlen(wchar_t wc);
+void	ft_wctomb(unsigned char (*octet)[4], wchar_t wc, int w_len);
 /*
 ** Print s, S
 */
-
+void	print_str(t_flags *f);
 
 
 #endif

@@ -3,7 +3,7 @@
 /*
 ** Check how many bytes needed for printing wide char
 */
-int		get_wlen(unsigned int wc)
+int		get_wlen(wchar_t wc)
 {
 	if (wc <= 127)
 		return (1);
@@ -22,7 +22,7 @@ int		get_wlen(unsigned int wc)
 ** 1110xxxx 10xxxxxx 10xxxxxx
 ** 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
 */
-void	ft_wctomb(unsigned char (*octet)[4], unsigned wc, int w_len)
+void	ft_wctomb(unsigned char (*octet)[4], wchar_t wc, int w_len)
 {
 	if (w_len == 1)
 		(*octet)[0] = wc;
@@ -48,11 +48,11 @@ void	ft_wctomb(unsigned char (*octet)[4], unsigned wc, int w_len)
 
 void	print_wchar(t_flags *f)
 {
-	unsigned int	wc;
+	wchar_t			wc;
 	int				w_len;
 	unsigned char	octet[4];
 
-	wc = va_arg(f->ap, unsigned int);
+	wc = (wchar_t)va_arg(f->ap, wint_t);
 	w_len = get_wlen(wc);
 	ft_wctomb(&octet, wc, w_len);
 	if (!f->minus)

@@ -2,6 +2,12 @@
 
 void	start_printing(t_flags *f)
 {
+	/*
+	printf("f->width = %d\n", f->width);
+	printf("f->prcsn = %d\n", f->prcsn);
+	printf("f->f_prcsn = %d\n", f->f_prcsn);
+	printf("specifier = %c\n", f->specifier);
+	*/
 	if (*f->fmt == 'd')
 		ft_putnbr(va_arg(f->ap, int));
 	if (*f->fmt == 'c')
@@ -9,12 +15,13 @@ void	start_printing(t_flags *f)
 	if (*f->fmt == 'C')
 		print_wchar(&*f);
 	if (*f->fmt == 's')
-		ft_putstr(va_arg(f->ap, char*));
+		print_str(&*f);
 }
 
 /*
 ** Function to check spcifier. Returns 1 if char equals one sepcifiers.
 */
+
 int		equals_spec(const char c)
 {
 	if (c == 's' || c == 'S' || c == 'p' || c == 'd' || c == 'D' ||\
@@ -24,6 +31,7 @@ int		equals_spec(const char c)
 	else
 		return (0);
 }
+
 void	read_format_2(t_flags *f)
 {
 		(*f->fmt == 'j') ? f->j = 1 : 0;
@@ -41,11 +49,14 @@ void	read_format_2(t_flags *f)
 			f->prcsn = ft_atoi(f->fmt);
 			while (ft_isdigit(*f->fmt))
 				f->fmt++;
+			f->fmt--;
 		}
 		if (ft_isdigit(*f->fmt) && *f->fmt != '0' && !f->f_prcsn)
 		{
 			f->width = ft_atoi(f->fmt);
-			f->fmt = f->fmt + (ft_intlen(f->width) - 1);
+			while (ft_isdigit(*f->fmt))
+				f->fmt++;
+			f->fmt--;
 		}
 		f->fmt++;
 }

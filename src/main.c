@@ -2,7 +2,7 @@
 
 int		main(void)
 {
-	ft_printf("%d", ft_printf("%lc%C", L'的', L'𐍈'));
+	ft_printf("%d", ft_printf("%*.*s", 11, 4, "longish"));
 	//printf("%d\n", i);
 	return 1;
 }
