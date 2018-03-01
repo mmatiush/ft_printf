@@ -41,15 +41,26 @@ void	read_format_2(t_flags *f);
 /*
 ** Print c, C
 */
+
 void	print_char(t_flags *f);
 void	print_padding(int width, int print_len, char symbol, t_flags *f);
 void	print_wchar(t_flags *f);
-int		get_wlen(wchar_t wc);
-void	ft_wctomb(unsigned char (*octet)[4], wchar_t wc, int w_len);
+void	ft_putwchar(wchar_t wc);
+int		get_wclen(wchar_t wc);
+void	ft_wctomb(unsigned char *octet, wchar_t wc, int wc_len);
+
 /*
 ** Print s, S
 */
-void	print_str(t_flags *f);
 
+void	print_str(t_flags *f);
+void	print_wstr(t_flags *f);
+size_t	get_wslen(wchar_t *wstr);
+
+/*
+**	Print d, i
+*/
+
+void	print_d(t_flags *f);
 
 #endif

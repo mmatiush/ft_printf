@@ -3,7 +3,7 @@
 /*
 ** Check how many bytes needed for printing wide char
 */
-int		get_wlen(wchar_t wc)
+int		get_wclen(wchar_t wc)
 {
 	if (wc <= 127)
 		return (1);
@@ -16,51 +16,60 @@ int		get_wlen(wchar_t wc)
 }
 
 /*
-** Converts wide char to multibyte char depending on how many bytes needed.
+** Converts wide char to multibyte char depending on how many bytes needed
+** for printing this wchar
 ** 0xxxxxxx
 ** 110xxxxx 10xxxxxx
 ** 1110xxxx 10xxxxxx 10xxxxxx
 ** 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
 */
-void	ft_wctomb(unsigned char (*octet)[4], wchar_t wc, int w_len)
+void	ft_wctomb(unsigned char *octet, wchar_t wc, int wc_len)
 {
-	if (w_len == 1)
-		(*octet)[0] = wc;
-	else if (w_len == 2)
+	if (wc_len == 1)
+		octet[0] = wc;
+	else if (wc_len == 2)
 	{
-		(*octet)[0] = 0xC0 | ((wc >> 6) & 0x1F);
-		(*octet)[1] = 0x80 | (wc & 0x3F);
+		octet[0] = 0xC0 | ((wc >> 6) & 0x1F);
+		octet[1] = 0x80 | (wc & 0x3F);
 	}
-	else if (w_len == 3)
+	else if (wc_len == 3)
 	{
-		(*octet)[0] = 0xE0 | ((wc >> 12) & 0x0F);
-		(*octet)[1] = 0x80 | ((wc >> 6) & 0x3F);
-		(*octet)[2] = 0x80 | (wc & 0x3F);
+		octet[0] = 0xE0 | ((wc >> 12) & 0x0F);
+		octet[1] = 0x80 | ((wc >> 6) & 0x3F);
+		octet[2] = 0x80 | (wc & 0x3F);
 	}
-	else if (w_len == 4)
+	else if (wc_len == 4)
 	{
-		(*octet)[0] = 0xF0 | ((wc >> 18) & 0x07);
-		(*octet)[1] = 0x80 | ((wc >> 12) & 0x3F);
-		(*octet)[2] = 0x80 | ((wc >> 6) & 0x3F);
-		(*octet)[3] = 0x80 | (wc & 0x3F);
+		octet[0] = 0xF0 | ((wc >> 18) & 0x07);
+		octet[1] = 0x80 | ((wc >> 12) & 0x3F);
+		octet[2] = 0x80 | ((wc >> 6) & 0x3F);
+		octet[3] = 0x80 | (wc & 0x3F);
 	}
+}
+
+void	ft_putwchar(wchar_t wc)
+{
+	int				wc_len;
+	unsigned char	octet[4];
+
+	wc_len = get_wclen(wc);
+	ft_wctomb(octet, wc, wc_len);
+	write(1, &octet[0], wc_len);
 }
 
 void	print_wchar(t_flags *f)
 {
 	wchar_t			wc;
-	int				w_len;
-	unsigned char	octet[4];
+	int				wc_len;
 
 	wc = (wchar_t)va_arg(f->ap, wint_t);
-	w_len = get_wlen(wc);
-	ft_wctomb(&octet, wc, w_len);
+	wc_len = get_wclen(wc);
 	if (!f->minus)
-		print_padding(f->width, w_len, (f->zero ? '0' : ' '), &*f);
-	write(1, &octet[0], w_len);
-	f->num_printed = f->num_printed + w_len;
+		print_padding(f->width, wc_len, (f->zero ? '0' : ' '), &*f);
+	ft_putwchar(wc);
+	f->num_printed = f->num_printed + wc_len;
 	if (f->minus)
-		print_padding(f->width, w_len, ' ', &*f);
+		print_padding(f->width, wc_len, ' ', &*f);
 }
 
 void	print_char(t_flags *f)

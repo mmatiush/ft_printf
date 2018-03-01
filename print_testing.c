@@ -15,9 +15,9 @@ int		get_wlen(unsigned int wc)
 
 int		main(void)
 {
-	unsigned int wc = L'𐍈';
-	int		w_len;
-	unsigned char octet[4];
+	unsigned int	wc = L'𐍈';
+	int				w_len;
+	unsigned char	octet[4];
 
 	w_len = get_wlen(wc);
 	int i = 0;

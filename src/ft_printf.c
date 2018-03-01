@@ -8,14 +8,16 @@ void	start_printing(t_flags *f)
 	printf("f->f_prcsn = %d\n", f->f_prcsn);
 	printf("specifier = %c\n", f->specifier);
 	*/
-	if (*f->fmt == 'd')
-		ft_putnbr(va_arg(f->ap, int));
+	if (*f->fmt == 'd' || *f->fmt == 'i')
+		print_d(&*f);
 	if (*f->fmt == 'c')
 		print_char(&*f);
 	if (*f->fmt == 'C')
 		print_wchar(&*f);
 	if (*f->fmt == 's')
 		print_str(&*f);
+	if (*f->fmt == 'S')
+		print_wstr(&*f);
 }
 
 /*

@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <limits.h>
+#include <locale.h>
 
 int		main(void)
 {
-	printf("%12.6s\n", "long");
+	printf("%hhd", 'a');
 }
