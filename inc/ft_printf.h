@@ -5,6 +5,7 @@
 #include <wchar.h>
 #include "libft.h"
 #include <stdarg.h>
+#include <stdlib.h>
 
 typedef struct	s_flags
 {
@@ -61,6 +62,6 @@ size_t	get_wslen(wchar_t *wstr);
 **	Print d, i
 */
 
-void	print_d(t_flags *f);
+void	print_decimal(t_flags *f);
 
 #endif
