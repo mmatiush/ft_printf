@@ -63,5 +63,10 @@ size_t	get_wslen(wchar_t *wstr);
 */
 
 void	print_decimal(t_flags *f);
+char	*ft_lutoa_base(size_t value, int base, char c);
+ssize_t	get_decimal_fl(t_flags *f);
+char	*get_decimal_pref(ssize_t value, t_flags *f);
+
+
 
 #endif

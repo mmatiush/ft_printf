@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/*
 char	*ft_lutoa_base(size_t value, int base, char c)
 {
 	char	*s;
@@ -20,27 +21,26 @@ char	*ft_lutoa_base(size_t value, int base, char c)
 	}
 	return (s);
 }
+*/
 
 int		main(void)
 {
-	size_t x = 9223372036854775807;
-	printf("%s\n", ft_lutoa_base(x, 8, 'A'));
-
-/*
 	int x = -45;
+	int y = 45;
 
-	printf("%12d\n", x);
-	printf("%012d\n", x);
-	printf("% 012d\n", x);
-	printf("%+12d\n", x);
-	printf("%+012d\n", x);
-	printf("%0+12d\n", x);
-	printf("%-12d\n", x);
-	printf("%- 12d\n", x);
-	printf("%-+12d\n", x);
-	printf("%12.4d\n", x);
-	printf("%-12.0d\n\n", x);
-	printf("%012.0d\n", x);
-	printf("%lu\n", sizeof(short));
-*/
+	printf("% 12.4d\n", x);
+	// printf("%010d\n", y);
+
+	// printf("%12d\n", x);
+	// printf("%012d\n", x);
+	// printf("%012d\n", x);
+	// printf("%+12d\n", x);
+	// printf("%+012d\n", x);
+	// printf("%0+12d\n", x);
+	// printf("%-12d\n", x);
+	// printf("%- 12d\n", x);
+	// printf("%-+12d\n", x);
+	// printf("%12.4d\n", x);
+	// printf("%-12.0d\n\n", x);
+	// printf("%012.0d\n", x);
 }

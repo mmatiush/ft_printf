@@ -2,7 +2,9 @@
 #include <locale.h>
 int		main(void)
 {
-	ft_printf("%d\n", );
+	int x = 10;
+
+	ft_printf("%d\n", x);
 	return (0);
 }
 /*
