@@ -23,7 +23,7 @@ void	print_wstr(t_flags *f)
 		wstr = L"(null)";
 	len = get_wslen(wstr);
 	if (!f->minus)
-		print_padding(f->width, len, (f->zero ? '0' : ' '), &*f);
+		print_padding(f->width, len, (f->zero ? '0' : ' '), f);
 	while(*wstr)
 	{
 		ft_putwchar(*wstr);
@@ -31,7 +31,7 @@ void	print_wstr(t_flags *f)
 	}
 	f->num_printed = f->num_printed + len;
 	if(f->minus)
-		print_padding(f->width, len, ' ', &*f);
+		print_padding(f->width, len, ' ', f);
 }
 
 void	print_str(t_flags *f)
@@ -51,9 +51,9 @@ void	print_str(t_flags *f)
 	if (f->f_prcsn)
 		(f->prcsn < len) ? len = f->prcsn : 0;
 	if (!f->minus)
-		print_padding(f->width, len, (f->zero ? '0' : ' '), &*f);
+		print_padding(f->width, len, (f->zero ? '0' : ' '), f);
 	write(1, str, len);
 	f->num_printed = f->num_printed + len;
 	if(f->minus)
-		print_padding(f->width, len, ' ', &*f);
+		print_padding(f->width, len, ' ', f);
 }

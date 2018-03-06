@@ -2,9 +2,10 @@
 #include <locale.h>
 int		main(void)
 {
-	int x = 10;
+	long long int x = -45;
 
-	ft_printf("%d\n", x);
+	ft_printf("%d\n", 0);
+	ft_printf("5 - %012.3d\n\n", x);
 	return (0);
 }
 /*

@@ -9,15 +9,15 @@ void	start_printing(t_flags *f)
 	printf("specifier = %c\n", f->specifier);
 	*/
 	if (*f->fmt == 'd' || *f->fmt == 'i')
-		print_decimal(&*f);
+		print_decimal(f);
 	if (*f->fmt == 'c')
-		print_char(&*f);
+		print_char(f);
 	if (*f->fmt == 'C')
-		print_wchar(&*f);
+		print_wchar(f);
 	if (*f->fmt == 's')
-		print_str(&*f);
+		print_str(f);
 	if (*f->fmt == 'S')
-		print_wstr(&*f);
+		print_wstr(f);
 }
 
 /*
