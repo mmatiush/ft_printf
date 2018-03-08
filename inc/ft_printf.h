@@ -40,7 +40,7 @@ void	read_format_1(t_flags *f);
 void	read_format_2(t_flags *f);
 
 /*
-** Print c, C
+** c, C
 */
 
 void	print_char(t_flags *f);
@@ -51,7 +51,7 @@ int		get_wclen(wchar_t wc);
 void	ft_wctomb(unsigned char *octet, wchar_t wc, int wc_len);
 
 /*
-** Print s, S
+** s, S
 */
 
 void	print_str(t_flags *f);
@@ -59,7 +59,7 @@ void	print_wstr(t_flags *f);
 size_t	get_wslen(wchar_t *wstr);
 
 /*
-**	Print d, i
+**	d, i
 */
 
 void	print_decimal(t_flags *f);
@@ -67,6 +67,18 @@ char	*ft_lutoa_base(size_t value, int base, char c);
 ssize_t	get_decimal_fl(t_flags *f);
 char	*get_decimal_pref(ssize_t value, t_flags *f);
 
+/*
+**	u, U
+*/
 
+void	print_unsigned(t_flags *f);
+size_t	get_unsigned_fl(t_flags *f);
+
+
+/*
+**
+*/
+
+void	print_hexadecimal(t_flags *f);
 
 #endif

@@ -25,6 +25,11 @@ char	*ft_lutoa_base(size_t value, int base, char c)
 
 int		main(void)
 {
+	unsigned	x = -45;
+
+	printf("%zu\n", 45);
+}
+/*
 	int x = -45;
 	int y = 45;
 
@@ -59,8 +64,6 @@ int		main(void)
 	printf("%-12.2d\n", y);
 	printf("%-12.4d\n", y);
 	printf("%012.0d\n", y);
-}
-/*
 1 - -00000000045
 2 - -000000045
 3 -          -45
@@ -75,4 +78,6 @@ int		main(void)
 3 - -45
 4 - -0045
 5 -          -45
+ft_printf("5 - %012.0d\n\n", x);
+
 */

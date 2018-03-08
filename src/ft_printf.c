@@ -10,14 +10,24 @@ void	start_printing(t_flags *f)
 	*/
 	if (*f->fmt == 'd' || *f->fmt == 'i')
 		print_decimal(f);
-	if (*f->fmt == 'c')
+	else if (*f->fmt == 'c')
 		print_char(f);
-	if (*f->fmt == 'C')
+	else if (*f->fmt == 'C')
 		print_wchar(f);
-	if (*f->fmt == 's')
+	else if (*f->fmt == 's')
 		print_str(f);
-	if (*f->fmt == 'S')
+	else if (*f->fmt == 'S')
 		print_wstr(f);
+	else if (*f->fmt == 'D')
+	{
+		f->l = 1;
+		print_decimal(f);
+	}
+	/*else if (*f->fmt == 'x')
+		print_hexadecimal(f);*/
+	else if (*f->fmt == 'u')
+		print_unsigned(f);
+
 }
 
 /*

@@ -41,7 +41,7 @@ void	print_str(t_flags *f)
 
 	if (f->l)
 	{
-		print_wstr(*&f);
+		print_wstr(f);
 		return ;
 	}
 	str = va_arg(f->ap, char *);

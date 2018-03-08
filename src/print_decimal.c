@@ -16,7 +16,8 @@ char	*ft_lutoa_base(size_t value, int base, char c)
 	i = 1;
 	while ((value /= base) > 0)
 		i++;
-	s = (char*)malloc(sizeof(char) * (i + 1));
+	if (!(s = (char*)malloc(sizeof(char) * (i + 1))))
+		return (NULL);
 	s[i] = '\0';
 	while (i--)
 	{
@@ -53,9 +54,9 @@ char	*get_decimal_pref(ssize_t value, t_flags *f)
 
 	if (value < 0)
 		prefix = "-";
-	else if (value > 0 && f->plus)
+	else if (value >= 0 && f->plus)
 		prefix = "+";
-	else if (value > 0 && f->space && !f->plus)
+	else if (value >= 0 && f->space && !f->plus)
 		prefix = " ";
 	else
 		prefix = "";
@@ -71,20 +72,23 @@ void	print_decimal(t_flags *f)
 
 	value = get_decimal_fl(f);
 	s = ft_lutoa_base((value < 0) ? -(size_t)value : (size_t)value, 10, 'a');
+	(value == 0 && f->f_prcsn) ? s = NULL : 0;
 	len = ((int)ft_strlen(s) > f->prcsn) ? (int)ft_strlen(s) : f->prcsn;
 	prefix = get_decimal_pref(value, f);
-	if (!f->minus && f->width > len + (int)ft_strlen(prefix) && !f->zero)
+	(f->f_prcsn) ? f->zero = 0 : 0;
+	if (!f->minus && !f->zero)
 		print_padding(f->width, len + (int)ft_strlen(prefix), ' ', f);
 	ft_putstr(prefix);
 	f->num_printed = f->num_printed + (int)ft_strlen(prefix);
-	if (!f->minus && f->width > len + (int)ft_strlen(prefix) && f->zero)
+	if (!f->minus && f->zero && !f->f_prcsn)
 		print_padding(f->width, len + (int)ft_strlen(prefix), '0', f);
 	if (f->prcsn > (int)ft_strlen(s))
 		print_padding(f->prcsn, (int)ft_strlen(s), '0', f);
 	ft_putstr(s);
 	f->num_printed = f->num_printed + ft_strlen(s);
-	if (f->minus && f->width > len + (int)ft_strlen(prefix))
+	if (f->minus)
 		print_padding(f->width, len + (int)ft_strlen(prefix), ' ', f);
+	ft_strdel(&s);
 }
 /*
 padding(' ') - prefix - paddding('0')  - prcsn - number - padding
