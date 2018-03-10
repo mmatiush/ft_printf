@@ -2,43 +2,35 @@
 
 void	start_printing(t_flags *f)
 {
-	/*
-	printf("f->width = %d\n", f->width);
-	printf("f->prcsn = %d\n", f->prcsn);
-	printf("f->f_prcsn = %d\n", f->f_prcsn);
-	printf("specifier = %c\n", f->specifier);
-	*/
-	if (*f->fmt == 'd' || *f->fmt == 'i')
-		print_decimal(f);
-	else if (*f->fmt == 'c')
-		print_char(f);
-	else if (*f->fmt == 'C')
-		print_wchar(f);
-	else if (*f->fmt == 's')
-		print_str(f);
-	else if (*f->fmt == 'S')
-		print_wstr(f);
-	else if (*f->fmt == 'D')
-	{
+	if (f->specifier == 'D' || f->specifier == 'U' || f->specifier == 'O')
 		f->l = 1;
+	if (f->specifier == 'd' || f->specifier == 'i' || f->specifier == 'D')
 		print_decimal(f);
-	}
-	/*else if (*f->fmt == 'x')
-		print_hexadecimal(f);*/
-	else if (*f->fmt == 'u')
-		print_unsigned(f);
-
+ 	(f->specifier == 'u' || f->specifier == 'U') ? print_unsigned(f) : 0;
+	(f->specifier == 'o' || f->specifier == 'O') ? print_octal(f) : 0;
+	(f->specifier == 'c') ? print_char(f) : 0;
+	(f->specifier == 'C') ? print_wchar(f) : 0;
+	(f->specifier == 's') ? print_str(f) : 0;
+	(f->specifier == 'S') ? print_wstr(f) : 0;
+	(f->specifier == 'x' || f->specifier == 'X') ? print_hexadecimal(f) : 0;
+	(f->specifier == '%') ? print_percent(f) : 0;
+	if (f->specifier == 'p')
+		{
+			f->hash = 1;
+			f->j = 1;
+			print_hexadecimal(f);
+		}
 }
 
 /*
-** Function to check spcifier. Returns 1 if char equals one sepcifiers.
+** Function to check specifier. Returns 1 if char equals one of the sepcifiers.
 */
 
 int		equals_spec(const char c)
 {
 	if (c == 's' || c == 'S' || c == 'p' || c == 'd' || c == 'D' ||\
 		c == 'i' || c == 'o' || c == 'O' || c == 'u' || c == 'U' ||\
-		c == 'x' || c == 'X' || c == 'c' || c == 'C')
+		c == 'x' || c == 'X' || c == 'c' || c == 'C' || c == '%')
 		return (1);
 	else
 		return (0);
@@ -82,15 +74,9 @@ void	read_format_1(t_flags *f)
 {
 	const char	*prev_format;
 
-	while (!(equals_spec(*f->fmt)) && *f->fmt)
+	while (!(equals_spec(*f->fmt)) || ft_strchr("hljz0#+- ", *f->fmt))
 	{
 		prev_format = f->fmt - 1;
-		if (*f->fmt == '%')
-		{
-			ft_putchar('%');
-			f->num_printed++;
-			return ;
-		}
 		if (*f->fmt == '*' && f->f_prcsn)
 			f->prcsn = va_arg(f->ap, int);
 		if (*f->fmt == '*' && !f->f_prcsn)
@@ -101,7 +87,7 @@ void	read_format_1(t_flags *f)
 		(*f->fmt == 'l' && *prev_format == 'l') ? f->ll = 1 : 0;
 		read_format_2(f);
 	}
-	if (*f->fmt)
+	if (equals_spec(*f->fmt))
 		f->specifier = *f->fmt;
 }
 
@@ -124,7 +110,10 @@ int		ft_printf(const char *format, ...)
 			clr_flags(&f);
 			f.fmt++;
 			read_format_1(&f);
-			start_printing(&f);
+			if (f.specifier)
+				start_printing(&f);
+			else
+				f.fmt--;
 		}
 		f.fmt++;
 	}

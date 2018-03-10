@@ -78,21 +78,20 @@ void	print_decimal(t_flags *f)
 	(f->f_prcsn) ? f->zero = 0 : 0;
 	if (!f->minus && !f->zero)
 		print_padding(f->width, len + (int)ft_strlen(prefix), ' ', f);
-	ft_putstr(prefix);
-	f->num_printed = f->num_printed + (int)ft_strlen(prefix);
+	write(1, prefix, (int)ft_strlen(prefix));
 	if (!f->minus && f->zero && !f->f_prcsn)
 		print_padding(f->width, len + (int)ft_strlen(prefix), '0', f);
 	if (f->prcsn > (int)ft_strlen(s))
 		print_padding(f->prcsn, (int)ft_strlen(s), '0', f);
-	ft_putstr(s);
-	f->num_printed = f->num_printed + ft_strlen(s);
+	write(1, s, (int)ft_strlen(s));
 	if (f->minus)
 		print_padding(f->width, len + (int)ft_strlen(prefix), ' ', f);
+	f->num_printed += (int)ft_strlen(s) + (int)ft_strlen(prefix);
 	ft_strdel(&s);
 }
+
 /*
 padding(' ') - prefix - paddding('0')  - prcsn - number - padding
-
 
 width
 prcsn

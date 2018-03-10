@@ -1,18 +1,14 @@
 #include "ft_printf.h"
 
-char	*get_hexadecimal_pref(size_t value, t_flags *f)
+char	*get_octal_pref(t_flags *f)
 {
-	if (f->hash && f->specifier == 'x' && value != 0)
-		return ("0x");
-	else if (f->hash && f->specifier == 'X' && value != 0)
-		return ("0X");
-	else if (f->specifier == 'p')
-		return ("0x");
+	if (f->hash)
+		return ("0");
 	else
 		return ("");
 }
 
-void	print_hexadecimal(t_flags *f)
+void	print_octal(t_flags *f)
 {
 	size_t	value;
 	char	*s;
@@ -20,8 +16,8 @@ void	print_hexadecimal(t_flags *f)
 	char	*prefix;
 
 	value = get_unsigned_fl(f);
-	s = ft_lutoa_base(value, 16, (f->specifier == 'X') ? 'A' : 'a');
-	prefix = get_hexadecimal_pref(value, f);
+	s = ft_lutoa_base(value, 8, 'a');
+	prefix = get_octal_pref(f);
 	(value == 0 && f->f_prcsn) ? s = NULL : 0;
 	len = ((int)ft_strlen(s) > f->prcsn) ? (int)ft_strlen(s) : f->prcsn;
 	(f->f_prcsn) ? f->zero = 0 : 0;

@@ -9,7 +9,6 @@
 
 typedef struct	s_flags
 {
-
 	const char	*fmt;
 	va_list		ap;
 	int			num_printed;
@@ -74,11 +73,24 @@ char	*get_decimal_pref(ssize_t value, t_flags *f);
 void	print_unsigned(t_flags *f);
 size_t	get_unsigned_fl(t_flags *f);
 
+/*
+** %
+*/
+
+void	print_percent(t_flags *f);
 
 /*
-**
+** o, O
+*/
+
+void	print_octal(t_flags *f);
+char	*get_octal_pref(t_flags *f);
+
+/*
+** x, X
 */
 
 void	print_hexadecimal(t_flags *f);
+char	*get_hexadecimal_pref(size_t value, t_flags *f);
 
 #endif

@@ -38,7 +38,7 @@ void	print_unsigned(t_flags *f)
 	if (f->prcsn > (int)ft_strlen(s))
 		print_padding(f->prcsn, (int)ft_strlen(s), '0', f);
 	write(1, s, ft_strlen(s));
-	f->num_printed = f->num_printed + ft_strlen(s);
+	f->num_printed = f->num_printed + (int)ft_strlen(s);
 	if(f->minus)
 		print_padding(f->width, len, ' ', f);
 	ft_strdel(&s);

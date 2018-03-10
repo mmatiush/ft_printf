@@ -25,9 +25,13 @@ char	*ft_lutoa_base(size_t value, int base, char c)
 
 int		main(void)
 {
-	unsigned	x = -45;
+	int	a = 10;
+	int b = 5;
+	int c = 1;
 
-	printf("%zu\n", 45);
+	a += b + c;
+
+	printf("%d\n", a);
 }
 /*
 	int x = -45;
