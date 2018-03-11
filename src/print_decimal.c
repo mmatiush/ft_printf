@@ -30,8 +30,12 @@ char	*ft_lutoa_base(size_t value, int base, char c)
 ssize_t	get_decimal_fl(t_flags *f)
 {
 	ssize_t	value;
-
-	if (f->l)
+	
+	if (f->j)
+		value = va_arg(f->ap, intmax_t);
+	else if (f->z)
+		value = va_arg(f->ap, size_t);
+	else if (f->l)
 		value = va_arg(f->ap, long int);
 	else if (f->ll)
 		value = va_arg(f->ap, long long int);
@@ -39,10 +43,6 @@ ssize_t	get_decimal_fl(t_flags *f)
 		value = (short)va_arg(f->ap, int);
 	else if (f->hh)
 		value = (char)va_arg(f->ap, int);
-	else if (f->j)
-		value = va_arg(f->ap, intmax_t);
-	else if (f->z)
-		value = va_arg(f->ap, size_t);
 	else
 		value = va_arg(f->ap, int);
 	return (value);

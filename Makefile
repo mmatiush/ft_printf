@@ -6,7 +6,7 @@ INC_DIR :=		./inc/
 
 SRC =			ft_printf.c clr_flags.c print_char.c print_padding.c print_str.c\
 				print_decimal.c print_unsigned.c print_percent.c print_octal.c\
-				print_hexadecimal.c
+				print_hexadecimal.c print_invalid_specifier.c
 
 OBJ :=			$(addprefix $(OBJ_DIR), $(SRC:.c=.o))
 

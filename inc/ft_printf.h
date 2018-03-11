@@ -84,7 +84,7 @@ void	print_percent(t_flags *f);
 */
 
 void	print_octal(t_flags *f);
-char	*get_octal_pref(t_flags *f);
+char	*get_octal_pref(size_t value, t_flags *f);
 
 /*
 ** x, X
@@ -92,5 +92,11 @@ char	*get_octal_pref(t_flags *f);
 
 void	print_hexadecimal(t_flags *f);
 char	*get_hexadecimal_pref(size_t value, t_flags *f);
+
+/*
+** Invalid sepcifier
+*/
+
+void	print_invalid_specifier(t_flags *f);
 
 #endif

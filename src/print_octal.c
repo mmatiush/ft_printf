@@ -1,8 +1,10 @@
 #include "ft_printf.h"
 
-char	*get_octal_pref(t_flags *f)
+char	*get_octal_pref(size_t value, t_flags *f)
 {
-	if (f->hash)
+	if (f->hash && !f->f_prcsn && value != 0)
+		return ("0");
+	else if (f->hash && f->f_prcsn && f->prcsn == 0)
 		return ("0");
 	else
 		return ("");
@@ -15,12 +17,12 @@ void	print_octal(t_flags *f)
 	int		len;
 	char	*prefix;
 
+	(f->f_prcsn) ? f->zero = 0 : 0;
 	value = get_unsigned_fl(f);
 	s = ft_lutoa_base(value, 8, 'a');
-	prefix = get_octal_pref(f);
-	(value == 0 && f->f_prcsn) ? s = NULL : 0;
+	(f->f_prcsn && f->prcsn == 0 && value == 0) ? s = NULL : 0;
+	prefix = get_octal_pref(value, f);
 	len = ((int)ft_strlen(s) > f->prcsn) ? (int)ft_strlen(s) : f->prcsn;
-	(f->f_prcsn) ? f->zero = 0 : 0;
 	if (!f->minus && !f->zero)
 		print_padding(f->width, len + (int)ft_strlen(prefix), ' ', f);
 	write(1, prefix, (int)ft_strlen(prefix));

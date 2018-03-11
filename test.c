@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <string.h>
 /*
 char	*ft_lutoa_base(size_t value, int base, char c)
 {
@@ -25,13 +25,11 @@ char	*ft_lutoa_base(size_t value, int base, char c)
 
 int		main(void)
 {
-	int	a = 10;
-	int b = 5;
-	int c = 1;
-
-	a += b + c;
-
-	printf("%d\n", a);
+	char c = 'a';
+	if (strchr("hljz0#+- ", c))
+		printf("FOUND\n");
+	else
+		printf("NOTHING\n");
 }
 /*
 	int x = -45;

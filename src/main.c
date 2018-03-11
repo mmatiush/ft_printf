@@ -3,16 +3,67 @@
 
 int		main(void)
 {
-	// int ret1 = 0;
-	// int ret2 = 0;
+	setlocale(LC_ALL, "");
+	// printf("0 - %o", 0);
+	// printf("\n");
+	// ft_printf("0 - %o", 0);
+	// printf("\n");
+	// printf("1 - %#o", 0);
+	// printf("\n");
+	// ft_printf("1 - %#o", 0);
+	// printf("\n");
+	// printf("2 - %#.O", 0);
+	// printf("\n");
+	// ft_printf("2 - %#.O", 0);
+	// printf("\n");
+	// printf("3 - %#.O", 0);
+	// printf("\n");
+	// ft_printf("3 - %#.O", 0);
+	// printf("\n");
+	// printf("4 - %#.o %#.0o", 0, 0);
+	// printf("\n");
+	// ft_printf("4 - %#.o %#.0o", 0, 0);
+	// printf("\n");
+	// printf("1 - %#.3o", 1);
+	// printf("\n");
+	// ft_printf("1 - %#.3o", 1);
+	// printf("\n");
+	// printf("2 - %#o", 0);
+	// printf("\n");
+	// ft_printf("2 - %#o", 0);
+	// printf("\n");
+	// printf("3 - %#.o, %#.0o", 0, 0);
+	// printf("\n");
+	// ft_printf("3 - %#.o, %#.0o", 0, 0);
+	// printf("\n");
+	// printf("4 - %#.o %#.0o", 0, 0);
+	// printf("\n");
+	// ft_printf("4 - %#.o %#.0o", 0, 0);
+	// printf("\n");
+	// printf("5 - %#.3o %#.3o", 0, 0);
+	// printf("\n");
+	// ft_printf("5 - %#.3o %#.3o", 0, 0);
+	// printf("\n");
+	// printf("6 - %#.o", 42);
+	// printf("\n");
+	// ft_printf("6 - %#.o", 42);
+	// printf("\n");
+	// printf("7 - %.o, %.0o", 0, 0);
+	// printf("\n");
+	// ft_printf("7 - %.o, %.0o", 0, 0);
+	// printf("\n");
+	// printf("8 - %5.o %5.0o", 0, 0);
+	// printf("\n");
+	// ft_printf("8 - %5.o %5.0o", 0, 0);
+	// printf("\n");
+	printf("{%*d}", -5, 42);
+	printf("\n");
+	ft_printf("{%*d}", -5, 42);
+	printf("\n");
+	printf("{%05.*d}", -6, 42);
+	printf("\n");
+	ft_printf("{%05.*d}", -6, 42);
 
-	// #define macro "%D, %D\n", 0, 0
-	// ret1 = ft_printf(macro);
-	// ret2 = printf(macro);
-
-	// printf("r1 = %d, r2 = %d\n", ret1, ret2);
-
-	ft_printf("%Zd", 9);
 }
 /*
 2 - α

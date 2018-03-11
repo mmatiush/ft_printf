@@ -20,6 +20,8 @@ void	start_printing(t_flags *f)
 			f->j = 1;
 			print_hexadecimal(f);
 		}
+	if (!equals_spec(f->specifier) && f->specifier)
+		print_invalid_specifier(f);
 }
 
 /*
@@ -47,7 +49,6 @@ void	read_format_2(t_flags *f)
 		(*f->fmt == '+') ? f->plus = 1 : 0;
 		(*f->fmt == '0') ? f->zero = 1 : 0;
 		(*f->fmt == ' ') ? f->space = 1 : 0;
-		(*f->fmt == '.') ? f->f_prcsn = 1 : 0;
 		if (ft_isdigit(*f->fmt) && *f->fmt != '0' && f->f_prcsn)
 		{
 			f->prcsn = ft_atoi(f->fmt);
@@ -74,21 +75,39 @@ void	read_format_1(t_flags *f)
 {
 	const char	*prev_format;
 
-	while (!(equals_spec(*f->fmt)) || ft_strchr("hljz0#+- ", *f->fmt))
+	while (*f->fmt && ft_strchr("hljz0#+-. *1234567890", *f->fmt))
 	{
 		prev_format = f->fmt - 1;
-		if (*f->fmt == '*' && f->f_prcsn)
-			f->prcsn = va_arg(f->ap, int);
+		if (*f->fmt == '.')
+			{
+				(f->f_prcsn = 1);
+				(f->prcsn = 0);
+			}
 		if (*f->fmt == '*' && !f->f_prcsn)
+		{
 			f->width = va_arg(f->ap, int);
+			(f->width < 0) ? f->minus = 1 : 0;
+			(f->width < 0) ? f->width = -f->width : 0;
+		}
+		if (*f->fmt == '*' && f->f_prcsn)
+		{
+			f->prcsn = va_arg(f->ap, int);
+			if (f->prcsn < 0)
+			{
+				f->prcsn = 0;
+				f->f_prcsn = 0;
+			}
+		}
 		(*f->fmt == 'h') ? f->h = 1 : 0;
 		(*f->fmt == 'l') ? f->l = 1 : 0;
 		(*f->fmt == 'h' && *prev_format == 'h') ? f->hh = 1 : 0;
 		(*f->fmt == 'l' && *prev_format == 'l') ? f->ll = 1 : 0;
 		read_format_2(f);
 	}
-	if (equals_spec(*f->fmt))
+	if (*f->fmt)
 		f->specifier = *f->fmt;
+	else
+		f->fmt--;
 }
 
 int		ft_printf(const char *format, ...)
@@ -110,10 +129,7 @@ int		ft_printf(const char *format, ...)
 			clr_flags(&f);
 			f.fmt++;
 			read_format_1(&f);
-			if (f.specifier)
-				start_printing(&f);
-			else
-				f.fmt--;
+			start_printing(&f);
 		}
 		f.fmt++;
 	}
