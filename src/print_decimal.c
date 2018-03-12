@@ -1,36 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_decimal.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmatiush <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/03/12 18:35:42 by mmatiush          #+#    #+#             */
+/*   Updated: 2018/03/12 18:35:44 by mmatiush         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-/*
-** Transfers unsigned long int to a string by a base.
-** The third agrument is either 'A' or 'a' depending on agrument received
-** by ft_printf. For base < 10 it's ignored.
-*/
-
-char	*ft_lutoa_base(size_t value, int base, char c)
-{
-	char	*s;
-	size_t 	n;
-	int		i;
-
-	n = value;
-	i = 1;
-	while ((value /= base) > 0)
-		i++;
-	if (!(s = (char*)malloc(sizeof(char) * (i + 1))))
-		return (NULL);
-	s[i] = '\0';
-	while (i--)
-	{
-		s[i] = (n % base < 10) ? n % base + '0' : n % base + c - 10;
-		n /= base;
-	}
-	return (s);
-}
-
-ssize_t	get_decimal_fl(t_flags *f)
+static ssize_t	get_decimal_fl(t_flags *f)
 {
 	ssize_t	value;
-	
+
 	if (f->j)
 		value = va_arg(f->ap, intmax_t);
 	else if (f->z)
@@ -48,7 +33,7 @@ ssize_t	get_decimal_fl(t_flags *f)
 	return (value);
 }
 
-char	*get_decimal_pref(ssize_t value, t_flags *f)
+static char		*get_decimal_pref(ssize_t value, t_flags *f)
 {
 	char	*prefix;
 
@@ -63,7 +48,7 @@ char	*get_decimal_pref(ssize_t value, t_flags *f)
 	return (prefix);
 }
 
-void	print_decimal(t_flags *f)
+void			print_decimal(t_flags *f)
 {
 	ssize_t			value;
 	char			*s;
@@ -89,17 +74,3 @@ void	print_decimal(t_flags *f)
 	f->num_printed += (int)ft_strlen(s) + (int)ft_strlen(prefix);
 	ft_strdel(&s);
 }
-
-/*
-padding(' ') - prefix - paddding('0')  - prcsn - number - padding
-
-width
-prcsn
-space
-zero
-minus
-plus
-
-F.PLUS = F.SPACE = ZERO 
-
-*/

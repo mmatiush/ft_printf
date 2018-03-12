@@ -1,11 +1,23 @@
-#ifndef FT_PRINTF_H
- #define FT_PRINTF_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmatiush <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/03/12 18:49:14 by mmatiush          #+#    #+#             */
+/*   Updated: 2018/03/12 18:49:16 by mmatiush         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include <stdio.h>
-#include <wchar.h>
-#include "libft.h"
-#include <stdarg.h>
-#include <stdlib.h>
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
+
+# include <stdio.h>
+# include <wchar.h>
+# include "libft.h"
+# include <stdarg.h>
+# include <stdlib.h>
 
 typedef struct	s_flags
 {
@@ -13,7 +25,7 @@ typedef struct	s_flags
 	va_list		ap;
 	int			num_printed;
 
-	char		specifier;		
+	char		specifier;
 	int			width;
 	int			prcsn;
 
@@ -23,7 +35,7 @@ typedef struct	s_flags
 	unsigned	zero:1;
 	unsigned	space:1;
 	unsigned	f_prcsn:1;
-	
+
 	unsigned	hh:1;
 	unsigned	h:1;
 	unsigned	ll:1;
@@ -32,71 +44,72 @@ typedef struct	s_flags
 	unsigned	z:1;
 }				t_flags;
 
-int		ft_printf(const char *format, ...);
-void	clr_flags(t_flags *f);
-int		equals_spec(const char c);
-void	read_format_1(t_flags *f);
-void	read_format_2(t_flags *f);
+int				ft_printf(const char *format, ...);
+void			clr_flags(t_flags *f);
+int				equals_spec(const char c);
+void			read_format_1(t_flags *f);
+char			*ft_lutoa_base(size_t value, int base, char c);
 
 /*
 ** c, C
 */
 
-void	print_char(t_flags *f);
-void	print_padding(int width, int print_len, char symbol, t_flags *f);
-void	print_wchar(t_flags *f);
-void	ft_putwchar(wchar_t wc);
-int		get_wclen(wchar_t wc);
-void	ft_wctomb(unsigned char *octet, wchar_t wc, int wc_len);
+void			print_char(t_flags *f);
+void			print_padding(int width, int print_len, char symbol,\
+				t_flags *f);
+void			print_wchar(t_flags *f);
+void			ft_putwchar(wchar_t wc);
+int				get_wclen(wchar_t wc);
+void			ft_wctomb(unsigned char *octet, wchar_t wc, int wc_len);
 
 /*
 ** s, S
 */
 
-void	print_str(t_flags *f);
-void	print_wstr(t_flags *f);
-size_t	get_wslen(wchar_t *wstr);
+void			print_str(t_flags *f);
+void			print_wstr(t_flags *f);
 
 /*
 **	d, i
 */
 
-void	print_decimal(t_flags *f);
-char	*ft_lutoa_base(size_t value, int base, char c);
-ssize_t	get_decimal_fl(t_flags *f);
-char	*get_decimal_pref(ssize_t value, t_flags *f);
+void			print_decimal(t_flags *f);
 
 /*
 **	u, U
 */
 
-void	print_unsigned(t_flags *f);
-size_t	get_unsigned_fl(t_flags *f);
+void			print_unsigned(t_flags *f);
+size_t			get_unsigned_fl(t_flags *f);
 
 /*
 ** %
 */
 
-void	print_percent(t_flags *f);
+void			print_percent(t_flags *f);
 
 /*
 ** o, O
 */
 
-void	print_octal(t_flags *f);
-char	*get_octal_pref(size_t value, t_flags *f);
+void			print_octal(t_flags *f);
 
 /*
 ** x, X
 */
 
-void	print_hexadecimal(t_flags *f);
-char	*get_hexadecimal_pref(size_t value, t_flags *f);
+void			print_hexadecimal(t_flags *f);
+
+/*
+** b
+*/
+
+void			print_binary(t_flags *f);
 
 /*
 ** Invalid sepcifier
 */
 
-void	print_invalid_specifier(t_flags *f);
+void			print_invalid_specifier(t_flags *f);
 
 #endif

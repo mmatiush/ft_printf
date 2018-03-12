@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_hexadecimal.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mmatiush <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/03/12 18:36:59 by mmatiush          #+#    #+#             */
+/*   Updated: 2018/03/12 18:37:01 by mmatiush         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-char	*get_hexadecimal_pref(size_t value, t_flags *f)
+static char	*get_hexadecimal_pref(size_t value, t_flags *f)
 {
 	if (f->hash && f->specifier == 'x' && value != 0)
 		return ("0x");
@@ -12,7 +24,7 @@ char	*get_hexadecimal_pref(size_t value, t_flags *f)
 		return ("");
 }
 
-void	print_hexadecimal(t_flags *f)
+void		print_hexadecimal(t_flags *f)
 {
 	size_t	value;
 	char	*s;

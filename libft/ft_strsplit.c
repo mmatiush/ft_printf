@@ -19,7 +19,9 @@ static char			**freeing(char **str)
 	i = 0;
 	while (str[i] != NULL)
 	{
-		free(str[i++] = NULL);
+		free(str[i]);
+		str[i] = NULL;
+		i++;
 	}
 	free(str);
 	return (NULL);
