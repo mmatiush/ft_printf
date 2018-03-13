@@ -12,6 +12,8 @@
 
 #include "ft_printf.h"
 
+static size_t	count_wslen_prcsn()
+
 static size_t	get_wslen(wchar_t *wstr)
 {
 	int i;
@@ -28,7 +30,7 @@ static size_t	get_wslen(wchar_t *wstr)
 void			print_wstr(t_flags *f)
 {
 	wchar_t	*wstr;
-	int		len;
+	size_t	len;
 
 	wstr = va_arg(f->ap, wchar_t*);
 	if (wstr == NULL)

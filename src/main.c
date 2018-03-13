@@ -41,7 +41,7 @@
 #define STR			//aka strings
 #define WSTR		//aka wide strings
 #define	LENGTH		//aka hh, h, l ,ll , z, j
-
+/*
 int	main(void)
 {
 	setlocale(LC_CTYPE, "");
@@ -603,11 +603,11 @@ int	main(void)
 	return (0);
 }
 
+*/
 
-
-// int		main(void)
-// {
-// 	setlocale(LC_ALL, "");
+int		main(void)
+{
+ 	setlocale(LC_ALL, "");
 	// printf("0 - %o", 0);
 	// printf("\n");
 	// ft_printf("0 - %o", 0);
@@ -671,8 +671,12 @@ int	main(void)
 // 	printf("|%.07.+6.3d| |%+5 +4.3d| |%+0+7+5d| |%+0+7+5.3d| |%+.007d|", 42,42,42,42,42);
 // 	printf("\n");
 // 	ft_printf("|%.07.+6.3d| |%+5 +4.3d| |%+0+7+5d| |%+0+7+5.3d| |%+.007d|", 42,42,42,42,42);
-	// ft_printf("%.8b\n", 9898998);
-// }
+ 	printf("%S\n", L"的α");
+ 	printf("%03S\n", L"的α");
+ 	printf("%04S\n", L"的α");
+ 	printf("%05S\n", L"的α");
+ 	printf("%06s\n", "hello");
+}
 
 /*
 2 - α

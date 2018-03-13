@@ -16,7 +16,7 @@
 ** Check how many bytes needed for printing a wide char
 */
 
-int		get_wclen(wchar_t wc)
+unsigned	get_wclen(wchar_t wc)
 {
 	if (wc <= 127)
 		return (1);
@@ -54,7 +54,7 @@ void	ft_wctomb(unsigned char *octet, wchar_t wc, int wc_len)
 	}
 	else if (wc_len == 4)
 	{
-		octet[0] = 0xF0 | ((wc >> 18) & 0x07);
+		octet[0] = 0xF0 | ((wc >> 18) & 0x7);
 		octet[1] = 0x80 | ((wc >> 12) & 0x3F);
 		octet[2] = 0x80 | ((wc >> 6) & 0x3F);
 		octet[3] = 0x80 | (wc & 0x3F);
@@ -63,7 +63,7 @@ void	ft_wctomb(unsigned char *octet, wchar_t wc, int wc_len)
 
 void	ft_putwchar(wchar_t wc)
 {
-	int				wc_len;
+	unsigned		wc_len;
 	unsigned char	octet[4];
 
 	wc_len = get_wclen(wc);
@@ -74,9 +74,9 @@ void	ft_putwchar(wchar_t wc)
 void	print_wchar(t_flags *f)
 {
 	wchar_t			wc;
-	int				wc_len;
+	unsigned		wc_len;
 
-	wc = (wchar_t)va_arg(f->ap, wint_t);
+	wc = (wchar_t)va_arg(f->ap, wchar_t);
 	wc_len = get_wclen(wc);
 	if (!f->minus)
 		print_padding(f->width, wc_len, (f->zero ? '0' : ' '), &*f);

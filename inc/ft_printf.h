@@ -13,11 +13,46 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include <stdio.h>
-# include <wchar.h>
+/*
+** Fxxx - front color; Bxxx - background color.
+*/
+
+# define AOFF "\x1B[0m"
+
+# define FBLK "\x1B[30m"
+# define FRED "\x1B[31m"
+# define FGRN "\x1B[32m"
+# define FYEL "\x1B[33m"
+# define FBLU "\x1B[34m"
+# define FMAG "\x1B[35m"
+# define FCYN "\x1B[36m"
+# define FWHT "\x1B[37m"
+
+# define BBLK "\x1B[40m"
+# define BRED "\x1B[41m"
+# define BGRN "\x1B[42m"
+# define BYEL "\x1B[43m"
+# define BBLU "\x1B[44m"
+# define BMAG "\x1B[45m"
+# define BCYN "\x1B[46m"
+# define BWHT "\x1B[47m"
+
+/*
+** Axxx - text attributes;
+** Off all attributes, bold, low intensity, underscore
+** reverse color and background
+*/
+
+# define AOFF "\x1B[0m"
+# define ABLD "\x1B[1m"
+# define ALWI "\x1B[2m"
+# define AUND "\x1B[4m"
+# define ARVR "\x1B[7m"
+
 # include "libft.h"
 # include <stdarg.h>
 # include <stdlib.h>
+# include <unistd.h>
 
 typedef struct	s_flags
 {
@@ -26,8 +61,8 @@ typedef struct	s_flags
 	int			num_printed;
 
 	char		specifier;
-	int			width;
-	int			prcsn;
+	unsigned	width;
+	unsigned	prcsn;
 
 	unsigned	hash:1;
 	unsigned	minus:1;
@@ -55,8 +90,8 @@ char			*ft_lutoa_base(size_t value, int base, char c);
 */
 
 void			print_char(t_flags *f);
-void			print_padding(int width, int print_len, char symbol,\
-				t_flags *f);
+void			print_padding(unsigned width, unsigned print_len, char symbol\
+				, t_flags *f);
 void			print_wchar(t_flags *f);
 void			ft_putwchar(wchar_t wc);
 int				get_wclen(wchar_t wc);
