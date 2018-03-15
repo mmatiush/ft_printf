@@ -4,9 +4,9 @@ SRC_DIR :=		./src/
 OBJ_DIR :=		./obj/
 INC_DIR :=		./inc/
 
-SRC =			ft_printf.c clr_flags.c print_char.c print_padding.c print_str.c\
+SRC =			ft_printf.c clr_flags.c print_char.c print_invalid_specifier.c\
 				print_decimal.c print_unsigned.c print_percent.c print_octal.c\
-				print_hexadecimal.c print_invalid_specifier.c print_wchar.c\
+				print_hexadecimal.c print_padding.c print_str.c print_wchar.c\
 				print_wstr.c read_format_string.c ft_lutoabase.c print_binary.c
 
 OBJ :=			$(addprefix $(OBJ_DIR), $(SRC:.c=.o))

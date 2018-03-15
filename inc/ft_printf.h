@@ -14,7 +14,7 @@
 # define FT_PRINTF_H
 
 /*
-** Fxxx - front color; Bxxx - background color.
+** Fxxx - font color; Bxxx - background color.
 */
 
 # define AOFF "\x1B[0m"
