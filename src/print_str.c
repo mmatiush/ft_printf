@@ -14,8 +14,8 @@
 
 void	print_str(t_flags *f)
 {
-	char	*str;
-	int		len;
+	char		*str;
+	unsigned	len;
 
 	if (f->l)
 	{

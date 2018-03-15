@@ -37,19 +37,19 @@ void	print_unsigned(t_flags *f)
 {
 	size_t			value;
 	char			*s;
-	int				len;
+	unsigned		len;
 
 	value = get_unsigned_fl(f);
 	s = ft_lutoa_base(value, 10, 'a');
 	(value == 0 && f->f_prcsn) ? s = NULL : 0;
-	len = ((int)ft_strlen(s) > f->prcsn) ? (int)ft_strlen(s) : f->prcsn;
+	len = (ft_strlen(s) > f->prcsn) ? ft_strlen(s) : f->prcsn;
 	(f->f_prcsn) ? f->zero = 0 : 0;
 	if (!f->minus)
 		print_padding(f->width, len, (f->zero ? '0' : ' '), f);
-	if (f->prcsn > (int)ft_strlen(s))
-		print_padding(f->prcsn, (int)ft_strlen(s), '0', f);
+	if (f->prcsn > ft_strlen(s))
+		print_padding(f->prcsn, ft_strlen(s), '0', f);
 	write(1, s, ft_strlen(s));
-	f->num_printed = f->num_printed + (int)ft_strlen(s);
+	f->num_printed = f->num_printed + ft_strlen(s);
 	if (f->minus)
 		print_padding(f->width, len, ' ', f);
 	ft_strdel(&s);

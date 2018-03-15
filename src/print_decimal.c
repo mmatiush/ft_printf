@@ -52,25 +52,25 @@ void			print_decimal(t_flags *f)
 {
 	ssize_t			value;
 	char			*s;
-	int				len;
+	unsigned		len;
 	char			*prefix;
 
 	value = get_decimal_fl(f);
 	s = ft_lutoa_base((value < 0) ? -(size_t)value : (size_t)value, 10, 'a');
 	(value == 0 && f->f_prcsn) ? s = NULL : 0;
-	len = ((int)ft_strlen(s) > f->prcsn) ? (int)ft_strlen(s) : f->prcsn;
+	len = (ft_strlen(s) > f->prcsn) ? ft_strlen(s) : f->prcsn;
 	prefix = get_decimal_pref(value, f);
 	(f->f_prcsn) ? f->zero = 0 : 0;
 	if (!f->minus && !f->zero)
-		print_padding(f->width, len + (int)ft_strlen(prefix), ' ', f);
-	write(1, prefix, (int)ft_strlen(prefix));
+		print_padding(f->width, len + ft_strlen(prefix), ' ', f);
+	write(1, prefix, ft_strlen(prefix));
 	if (!f->minus && f->zero && !f->f_prcsn)
-		print_padding(f->width, len + (int)ft_strlen(prefix), '0', f);
-	if (f->prcsn > (int)ft_strlen(s))
-		print_padding(f->prcsn, (int)ft_strlen(s), '0', f);
-	write(1, s, (int)ft_strlen(s));
+		print_padding(f->width, len + ft_strlen(prefix), '0', f);
+	if (f->prcsn > ft_strlen(s))
+		print_padding(f->prcsn, ft_strlen(s), '0', f);
+	write(1, s, ft_strlen(s));
 	if (f->minus)
-		print_padding(f->width, len + (int)ft_strlen(prefix), ' ', f);
-	f->num_printed += (int)ft_strlen(s) + (int)ft_strlen(prefix);
+		print_padding(f->width, len + ft_strlen(prefix), ' ', f);
+	f->num_printed += ft_strlen(s) + ft_strlen(prefix);
 	ft_strdel(&s);
 }

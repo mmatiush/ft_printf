@@ -93,8 +93,8 @@ void			print_char(t_flags *f);
 void			print_padding(unsigned width, unsigned print_len, char symbol\
 				, t_flags *f);
 void			print_wchar(t_flags *f);
-void			ft_putwchar(wchar_t wc);
-int				get_wclen(wchar_t wc);
+size_t			ft_putwchar(wchar_t wc);
+unsigned		get_wclen(wchar_t wc);
 void			ft_wctomb(unsigned char *octet, wchar_t wc, int wc_len);
 
 /*

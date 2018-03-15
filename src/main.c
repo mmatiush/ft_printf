@@ -607,7 +607,7 @@ int	main(void)
 
 int		main(void)
 {
- 	setlocale(LC_ALL, "");
+ // 	setlocale(LC_ALL, "");
 	// printf("0 - %o", 0);
 	// printf("\n");
 	// ft_printf("0 - %o", 0);
@@ -668,14 +668,19 @@ int		main(void)
 	// printf("\n");
 	// ft_printf("|%#6.9o|\t|%#12.7o|\t|%#.7o|\t|%#09.7o|\t|%#02.7o|", 8400,8400,0,8400,8400);
 	// printf("\n");
-// 	printf("|%.07.+6.3d| |%+5 +4.3d| |%+0+7+5d| |%+0+7+5.3d| |%+.007d|", 42,42,42,42,42);
-// 	printf("\n");
-// 	ft_printf("|%.07.+6.3d| |%+5 +4.3d| |%+0+7+5d| |%+0+7+5.3d| |%+.007d|", 42,42,42,42,42);
- 	printf("%S\n", L"的α");
- 	printf("%03S\n", L"的α");
- 	printf("%04S\n", L"的α");
- 	printf("%05S\n", L"的α");
- 	printf("%06s\n", "hello");
+ // 	printf("%S\n", L"的α");
+ // 	printf("%03S\n", L"的α");
+ // 	printf("%04S\n", L"的α");
+ // 	printf("%05S\n", L"的α");
+ // 	printf("%06S\n", L"的α");
+ // 	printf("%7.1S\n", L"的α");
+ // 	ft_printf("%S\n", L"的α");
+ // 	ft_printf("%03S\n", L"的α");
+ // 	ft_printf("%04S\n", L"的α");
+ // 	ft_printf("%05S\n", L"的α");
+ // 	ft_printf("%06S\n", L"的α");
+ // 	ft_printf("%7.1S\n", L"的α");
+	return (0);
 }
 
 /*

@@ -37,7 +37,7 @@ unsigned	get_wclen(wchar_t wc)
 ** 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
 */
 
-void	ft_wctomb(unsigned char *octet, wchar_t wc, int wc_len)
+void		ft_wctomb(unsigned char *octet, wchar_t wc, int wc_len)
 {
 	if (wc_len == 1)
 		octet[0] = wc;
@@ -61,7 +61,7 @@ void	ft_wctomb(unsigned char *octet, wchar_t wc, int wc_len)
 	}
 }
 
-void	ft_putwchar(wchar_t wc)
+size_t		ft_putwchar(wchar_t wc)
 {
 	unsigned		wc_len;
 	unsigned char	octet[4];
@@ -69,9 +69,10 @@ void	ft_putwchar(wchar_t wc)
 	wc_len = get_wclen(wc);
 	ft_wctomb(octet, wc, wc_len);
 	write(1, &octet[0], wc_len);
+	return (wc_len);
 }
 
-void	print_wchar(t_flags *f)
+void		print_wchar(t_flags *f)
 {
 	wchar_t			wc;
 	unsigned		wc_len;

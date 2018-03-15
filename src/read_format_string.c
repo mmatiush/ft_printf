@@ -28,26 +28,30 @@ int			equals_spec(const char c)
 }
 
 /*
-** Read fomat started when a % was encountered. It will process wile format
+** Read fomat started when a % was encountered. It will process while format
 ** doesn't equal a specifier and while format exists
 */
 
 static void	read_wildcard(t_flags *f)
 {
+	int	n;
+
 	if (!f->f_prcsn)
 	{
-		f->width = va_arg(f->ap, int);
-		(f->width < 0) ? f->minus = 1 : 0;
-		(f->width < 0) ? f->width = -f->width : 0;
+		n = va_arg(f->ap, int);
+		(n < 0) ? f->minus = 1 : 0;
+		f->width = (n < 0) ? -(unsigned)n : n;
 	}
 	else
 	{
-		f->prcsn = va_arg(f->ap, int);
-		if (f->prcsn < 0)
+		n = va_arg(f->ap, int);
+		if (n < 0)
 		{
 			f->prcsn = 0;
 			f->f_prcsn = 0;
 		}
+		else
+			f->prcsn = n;
 	}
 }
 
@@ -78,6 +82,11 @@ static void	read_format_2(t_flags *f, const char *prev_format)
 	}
 	f->fmt++;
 }
+
+/*
+** Read_format checks format string while encounters any of characters that
+** may represent flags or modifiers
+*/
 
 void		read_format_1(t_flags *f)
 {

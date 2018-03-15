@@ -18,7 +18,8 @@
 ** The function prints width - print_len bytes;
 */
 
-void		print_padding(int width, int print_len, char symbol, t_flags *f)
+void	print_padding(unsigned width, unsigned print_len, char symbol,\
+		t_flags *f)
 {
 	while (print_len < width)
 	{

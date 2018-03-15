@@ -12,7 +12,26 @@
 
 #include "ft_printf.h"
 
-static size_t	count_wslen_prcsn()
+static size_t	count_wslen_prcsn(int precision, wchar_t *wstr)
+{
+	int		n;
+	size_t	i;
+
+	i = 0;
+	while (*wstr)
+	{
+		n = get_wclen(*wstr);
+		if (precision - n >= 0)
+		{
+			precision -= n;
+			i += (unsigned)n;
+		}
+		else
+			return (i);
+		wstr++;
+	}
+	return (i);
+}
 
 static size_t	get_wslen(wchar_t *wstr)
 {
@@ -30,20 +49,24 @@ static size_t	get_wslen(wchar_t *wstr)
 void			print_wstr(t_flags *f)
 {
 	wchar_t	*wstr;
-	size_t	len;
+	size_t	len1;
+	size_t	len2;
+	size_t	n;
 
 	wstr = va_arg(f->ap, wchar_t*);
 	if (wstr == NULL)
 		wstr = L"(null)";
-	len = get_wslen(wstr);
+	len1 = (f->f_prcsn) ? count_wslen_prcsn((int)f->prcsn, wstr) :\
+	get_wslen(wstr);
+	len2 = len1;
 	if (!f->minus)
-		print_padding(f->width, len, (f->zero ? '0' : ' '), f);
-	while (*wstr)
+		print_padding(f->width, len1, (f->zero ? '0' : ' '), f);
+	while (*wstr && len2 > 0)
 	{
-		ft_putwchar(*wstr);
-		wstr++;
+		n = ft_putwchar(*wstr++);
+		f->num_printed += n;
+		len2 -= n;
 	}
-	f->num_printed = f->num_printed + len;
 	if (f->minus)
-		print_padding(f->width, len, ' ', f);
+		print_padding(f->width, len1, ' ', f);
 }
