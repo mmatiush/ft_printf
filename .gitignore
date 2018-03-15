@@ -1,0 +1,5 @@
+.DS_Store
+*.o
+libftprintf.a
+a.out
+.*.swp
