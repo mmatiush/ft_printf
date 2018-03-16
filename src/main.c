@@ -32,7 +32,7 @@
 }
 #define TITLE(...){printf("\033[1m\n");printf(__VA_ARGS__);printf("\n\033[0m");}
 
-//Test switchers - comment some of then to turn the tests off
+///Test switchers - comment some of then to turn the tests off
 #define	CHAR		//aka chars
 #define	PER			//aka percent(%)
 #define	NUM			//aka numbers
@@ -40,8 +40,8 @@
 #define	STRANGE		//aka undefined tests
 #define STR			//aka strings
 #define WSTR		//aka wide strings
-#define	LENGTH		//aka hh, h, l ,ll , z, j
-/*
+//#define	LENGTH		//aka hh, h, l ,ll , z, j
+
 int	main(void)
 {
 	setlocale(LC_CTYPE, "");
@@ -591,6 +591,14 @@ int	main(void)
 	PRINTF("|%ll.15.12d|\t|%.ll 15.12d|\t|%.015ll.12d|\t|%.ll#15.12d|\t|%.ll#15.12x|",-42,-42,-42,-42,-42);
 #endif
 	
+/*
+**	Put new stuff here like:
+#ifdef <test_name>
+	TITLE("<test name>\n");
+	PRINTF("test without \n in the end!");
+#endif
+*/
+
 //Don't remove!
 	if (errno)
 		printf(RED"\n\n\tSome error has been found:\t%s\n"NORM, strerror(errno));
@@ -603,7 +611,7 @@ int	main(void)
 	return (0);
 }
 
-*/
+/*
 
 int		main(void)
 {
@@ -682,6 +690,7 @@ int		main(void)
  	ft_printf("%7.1S\n", L"的α");
 	return (0);
 }
+*/
 
 /*
 2 - α
