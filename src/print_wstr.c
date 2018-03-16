@@ -49,24 +49,23 @@ static size_t	get_wslen(wchar_t *wstr)
 void			print_wstr(t_flags *f)
 {
 	wchar_t	*wstr;
-	size_t	len1;
-	size_t	len2;
+	size_t	len;
+	size_t	len_cpy;
 	size_t	n;
 
 	wstr = va_arg(f->ap, wchar_t*);
 	if (wstr == NULL)
 		wstr = L"(null)";
-	len1 = (f->f_prcsn) ? count_wslen_prcsn((int)f->prcsn, wstr) :\
-	get_wslen(wstr);
-	len2 = len1;
+	len = (f->f_prcsn) ? count_wslen_prcsn((int)f->prcsn, wstr) : get_wslen(wstr);
+	len_cpy = len;
 	if (!f->minus)
-		print_padding(f->width, len1, (f->zero ? '0' : ' '), f);
-	while (*wstr && len2 > 0)
+		print_padding(f->width, len, (f->zero ? '0' : ' '), f);
+	while (*wstr && len_cpy > 0)
 	{
 		n = ft_putwchar(*wstr++);
 		f->num_printed += n;
-		len2 -= n;
+		len_cpy -= n;
 	}
 	if (f->minus)
-		print_padding(f->width, len1, ' ', f);
+		print_padding(f->width, len, ' ', f);
 }
