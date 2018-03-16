@@ -43,10 +43,10 @@ $(OBJ_DIR):
 	mkdir $(OBJ_DIR)
 
 $(OBJ_DIR)%.o: %.c
-	$(CC) -c $< -o $@ $(CC_FLAGS) -I $(INC_DIR)
+	$(CC) -c $< -o $@ $(CC_FLAGS) -I $(INC_DIR) -I $(LIBFT_DIR)
 
 $(LIBFT_DIR)%.o: %.c
-	$(CC) -c $< -o $@ $(CC_FLAGS) -I $(INC_DIR) -I $(LIBFT_DIR)
+	$(CC) -c $< -o $@ $(CC_FLAGS) -I $(LIBFT_DIR)
 
 main: $(NAME)
 	$(CC) ./src/main.c $(NAME) $(HEADER_FLAGS) -o a.out
