@@ -37,11 +37,16 @@ $(NAME): $(LIBFT_OBJ) $(OBJ)
 	ar rc $(NAME) $(OBJ) $(LIBFT_OBJ)
 	ranlib $(NAME)
 
+$(OBJ): | $(OBJ_DIR)
+
+$(OBJ_DIR):
+	mkdir $(OBJ_DIR)
+
 $(OBJ_DIR)%.o: %.c
 	$(CC) -c $< -o $@ $(CC_FLAGS) -I $(INC_DIR)
 
 $(LIBFT_DIR)%.o: %.c
-	$(CC) -c $< -o $@ $(CC_FLAGS) -I $(INC_DIR)
+	$(CC) -c $< -o $@ $(CC_FLAGS) -I $(INC_DIR) -I $(LIBFT_DIR)
 
 main: $(NAME)
 	$(CC) ./src/main.c $(NAME) $(HEADER_FLAGS) -o a.out
@@ -51,6 +56,7 @@ clean:
 
 fclean: clean
 	rm -f $(NAME) a.out
+	rm -rf $(OBJ_DIR)
 
 re: fclean all
 
