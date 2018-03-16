@@ -21,7 +21,6 @@ ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c ft_ischrctr.c \
 ft_strwdnb.c ft_isspace.c ft_intlen.c ft_lstnew.c ft_lstdelone.c ft_lstdel.c \
 ft_lstadd.c ft_lstiter.c ft_lstmap.c ft_bzero.c
 
-LIBFT :=		libft.a
 LIBFT_DIR :=	./libft/
 
 OBJ :=			$(addprefix $(OBJ_DIR), $(SRC:.c=.o))
