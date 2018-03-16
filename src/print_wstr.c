@@ -56,7 +56,8 @@ void			print_wstr(t_flags *f)
 	wstr = va_arg(f->ap, wchar_t*);
 	if (wstr == NULL)
 		wstr = L"(null)";
-	len = (f->f_prcsn) ? count_wslen_prcsn((int)f->prcsn, wstr) : get_wslen(wstr);
+	len = (f->f_prcsn) ? count_wslen_prcsn((int)f->prcsn, wstr) :\
+	get_wslen(wstr);
 	len_cpy = len;
 	if (!f->minus)
 		print_padding(f->width, len, (f->zero ? '0' : ' '), f);
